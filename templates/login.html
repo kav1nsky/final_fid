@@ -1,0 +1,40 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<html>
+<head>
+    <style>
+        input{
+            width: 270px!important;
+        }
+        textarea{
+            width: 270px!important;
+            height: 100px!important;
+        }
+    </style>
+
+</head>
+<body style="background: url('../static/blockchain08.jpg')">
+<div style="display: flex; justify-content: flex-start">
+    {% bootstrap_messages %}
+    <div style="padding: 30px 60px;background-color: #fff;height: 100%">
+<form action="/login/" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form_errors form type='non_fields' %}
+    {% bootstrap_field form.name placeholder='example@gmail.com' %}
+    {% bootstrap_field form.password  %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            Войти
+        </button>
+    {% endbuttons %}
+</form>
+</div>
+</form>
+
+{#Уже есть аккаунт? <a href="{% url 'login_user' %}">Вход</a>#}
+
+</div>
+</div>
+</body>
+</html>
