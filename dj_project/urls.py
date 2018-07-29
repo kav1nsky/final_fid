@@ -20,6 +20,8 @@ from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView, CreateView
 from reg.views import reg_user, login_user, exit, profile
+from dashboard.views import profile_view, dashboard
+
 
 urlpatterns = [
   path('admin/', admin.site.urls),
@@ -30,6 +32,8 @@ urlpatterns = [
   #re_path('dashboard', profile),
   re_path('logout', exit, name='logout'),
   re_path('profile', profile, name='profile'),
+  re_path('dashboard', dashboard, name='dashboard'),
+  path('<slug:public_key>', profile_view, name='profile_view'),
   # re_path('.*', TemplateView.as_view(template_name='index.html')),
   path('create_review', CreateView.as_view()),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

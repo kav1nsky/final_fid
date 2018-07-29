@@ -4,14 +4,14 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import CreateView
 
-from apps.dashboard.forms import AgreementForm
-from apps.reg.models import Review, Profile, Agreement
+from dashboard.forms import AgreementForm
+from reg.models import Review, Profile, Agreement
 
 
-# @login_required
-def profile_view(request):
-    profile = Profile.objects.get(user=request.user)
-    return render(request, 'dashboard.html', {'profile': profile[0]})
+def profile_view(request, public_key):
+    user_profile = Profile.objects.get(public_key=public_key)
+    user_profile.private_key = None
+    return render(request, 'profile.html', {'user_profile': user_profile})
 
 
 @login_required
@@ -32,3 +32,7 @@ def create_agreement_view(request):
 
     return render(request, 'agreement.html', {'form': form})
 
+
+def dashboard(request):
+    if request.method == 'GET':
+        return HttpResponse(render(request, 'dashboard.html'))

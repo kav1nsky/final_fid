@@ -53,7 +53,7 @@
         <div class="container">
         <h1>Личный кабинет {{ user_profile.real_name }}</h1>
             <p>{{ user_profile.description }}</p>
-            <p>Ваш рейтинг - {% if user_profile.rating == -1 %}
+            <p>Рейтинг - {% if user_profile.rating == -1 %}
                 Ещё не определён
                 {% else %}
                 {{ user_profile.rating }}
@@ -73,13 +73,14 @@
                 <span class="input-group-text" id="basic-addon2">Public key</span>
              </div>
         </div>
-
+        {% if user_profile.private_key %}
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="{{ user_profile.private_key }}" aria-label="Recipient's username" aria-describedby="basic-addon2" disabled>
              <div class="input-group-append">
                 <span class="input-group-text" id="basic-addon2">Private key</span>
              </div>
         </div>
+        {% endif %}
         </div>
         </div>
     </div>

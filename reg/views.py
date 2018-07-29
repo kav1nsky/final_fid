@@ -21,7 +21,7 @@ def reg_user(request):
 
             public_key, private_key, account_name = manager.createAccount(u.id)
 
-            p = Profile(user=u, is_customer=False, real_name=form.cleaned_data['bio'],
+            p = Profile(user=u, is_customer=False, real_name=form.cleaned_data['id_real_name'],
                         description=form.cleaned_data['bio'], public_key=public_key,
                         private_key=private_key, account_name=account_name)
             p.save()
