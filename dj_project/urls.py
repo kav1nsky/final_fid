@@ -33,7 +33,7 @@ urlpatterns = [
   re_path('logout', exit, name='logout'),
   re_path('profile', profile, name='profile'),
   re_path('dashboard', dashboard, name='dashboard'),
-  path('<slug:public_key>', profile_view, name='profile_view'),
+  path('<slug:account_name>', profile_view, name='profile_view'),
   # re_path('.*', TemplateView.as_view(template_name='index.html')),
   path('create_review', CreateView.as_view()),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

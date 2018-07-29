@@ -8,8 +8,8 @@ from dashboard.forms import AgreementForm
 from reg.models import Review, Profile, Agreement
 
 
-def profile_view(request, public_key):
-    user_profile = Profile.objects.get(public_key=public_key)
+def profile_view(request, account_name):
+    user_profile = Profile.objects.get(account_name=account_name)
     user_profile.private_key = None
     return render(request, 'profile.html', {'user_profile': user_profile})
 

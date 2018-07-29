@@ -101,8 +101,10 @@ canvas{
   padding: 15px 10px 0px 0px;
 }
 
-#basic-addon2{
-  background: white!important;
-  min-width: 6rem!important;
-  text-align: center!important;
+
+
+#in-app-navbar{
+  display: flex;
+  justify-items: flex-end;
+  background: #000000;
 }
