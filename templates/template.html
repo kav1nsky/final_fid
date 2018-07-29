@@ -15,7 +15,6 @@
     <!-- Custom styles for this template -->
 
     <link rel="stylesheet" href="{% static 'style.css' %}">
-
     <style>
         @media (max-width: 767px) {
             .btn {
@@ -27,26 +26,27 @@
             .partners {
                 display: none            }
             }
+
+
     </style>
 
 </head>
 
-<body style="background: url('../static/blockchain08.jpg')">
+<body id="particles-js">
     <div class="container-fluid">
-        <nav class="navbar navbar-dark bg-light fixed-top" id="navbar-top">
-            <a class="navbar-brand"></a>
-
+        <nav id="fid-navbar">
             <div>
                 {% if not request.user.is_authenticated %}
                     <a href="{% url 'register' %}" class="btn btn-primary optimize" role="button">Регистрация</a>
                     <a href="{% url 'login' %}" class="btn btn-primary optimize" role="button">Вход</a>
                 {% else %}
-                    <a href="" class="btn btn-primary optimize" role="button"> @{{ request.user.username }}</a>
+                    <a href="{% url 'profile' %}" class="btn btn-primary optimize" role="button"> {{ request.user.username }}</a>
                     <a href="{% url 'logout' %}" class="btn btn-primary optimize" role="button">Выход</a>
                 {% endif %}
             </div>
         </nav>
     </div>
+    <div > </div>
 
 
     {% block content %}
@@ -54,6 +54,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'particles.js' %}"></script>
+    <script>
+        particlesJS.load('particles-js', "{% static 'particles.json' %}", function(){
+            console.log('particles.json loaded...');
+        });
+    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>

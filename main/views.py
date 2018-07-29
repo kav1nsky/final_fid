@@ -11,3 +11,7 @@ from django.contrib.auth.models import User
 def index(request):
     if request.method == 'GET':
         return render(request, 'index.html')
+
+
+def dashboard(request):
+    pass

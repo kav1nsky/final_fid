@@ -19,18 +19,25 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, re_path, include
 from django.views.generic import TemplateView, CreateView
-from reg.views import reg_user, login_user, exit
+from reg.views import reg_user, login_user, exit, profile
 
 urlpatterns = [
-  path('admin', admin.site.urls),
+  path('admin/', admin.site.urls),
   path('api/', include('api.urls')),
   path('', include('main.urls')),
   path('reg', reg_user, name='register'),
-  path('login', login_user, name='login'),
-  path('logout', exit, name='logout'),
-  re_path('.*', TemplateView.as_view(template_name='index.html')),
+  re_path('login', login_user, name='login'),
+  #re_path('dashboard', profile),
+  re_path('logout', exit, name='logout'),
+  re_path('profile', profile, name='profile'),
+  # re_path('.*', TemplateView.as_view(template_name='index.html')),
   path('create_review', CreateView.as_view()),
-]
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if settings.DEBUG:
+    if settings.MEDIA_ROOT:
+        urlpatterns += static(settings.MEDIA_URL,
+            document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     if settings.MEDIA_ROOT:

@@ -10,6 +10,13 @@ class Profile(models.Model):
     rating = models.IntegerField(default=-1)
     description = models.TextField()
     date_of_reg = models.DateTimeField(default=datetime.now())
+    public_key = models.CharField(max_length=50, default="")
+    private_key = models.CharField(max_length=50, default="")
+    account_name = models.CharField(max_length=50, default="")
+    image = models.ImageField(upload_to="people", default="cat.jpg")
+
+    def __str__(self):
+        return self.user.username
 
 
 class Review(models.Model):

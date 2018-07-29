@@ -5,7 +5,6 @@ import subprocess
 
 
 def nodeos():
-    return
     programm = "nodeos"
 
     args = ["--plugin eosio::wallet_api_plugin", "--plugin eosio::wallet_plugin", "--plugin eosio::producer_plugin",

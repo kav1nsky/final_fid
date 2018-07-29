@@ -6,8 +6,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import Profile
+from fidelity.fidelity import Fidelity
 
-from dj_project import eos
+manager = Fidelity()
 
 def reg_user(request):
     if request.method == 'POST':
@@ -17,14 +19,15 @@ def reg_user(request):
                                          password=form.cleaned_data['password'],)
             u.save()
 
-            eos.create_new_account()
+            public_key, private_key, account_name = manager.createAccount(u.id)
 
             p = Profile(user=u, is_customer=False, real_name=form.cleaned_data['bio'],
-                        description=form.cleaned_data['bio'])
+                        description=form.cleaned_data['bio'], public_key=public_key,
+                        private_key=private_key, account_name=account_name)
             p.save()
             user = authenticate(request, username=form.cleaned_data['email'], password=form.cleaned_data['password'])
             login(request, user)
-        return HttpResponseRedirect('/dashboard')
+        return HttpResponseRedirect('profile')
     else:
         form = RegForm()
 
@@ -49,3 +52,11 @@ def exit(request):
     if request.method == 'GET':
         logout(request)
     return redirect('index')
+
+@login_required
+def profile(request):
+    if request.method == 'GET':
+        user_profile = Profile.objects.get(user=request.user.id)
+        print(user_profile.public_key, "ewjifwefjoew")
+        return HttpResponse(render(request, 'profile.html',
+                                   {'user_profile' : user_profile}))

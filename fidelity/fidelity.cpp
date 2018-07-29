@@ -190,6 +190,8 @@ void fidelity::putrecord(const account_name& account, const uint64_t& agreementI
         allCustomers.modify(itr2, _self, [&]( auto& c ) {
             c.recordIds.push_back(newId);
         });
+    } else {
+        eosio_assert(false, "Incorrect account or agreement already rated");
     }
 }
 

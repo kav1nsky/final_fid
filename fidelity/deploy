@@ -1,0 +1,4 @@
+eosiocpp -o fidelity.wast fidelity.cpp
+eosiocpp -g fidelity.abi fidelity.hpp
+cleos wallet unlock --password $1
+cleos set contract contract ../fidelity -p contract@active
