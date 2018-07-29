@@ -161,7 +161,7 @@ void fidelity::putrecord(const account_name& account, const uint64_t& agreementI
             r.comment = comment;
         });
 
-        workers allWorkers(_self, itr->workerName);
+        workers allWorkers(_self, _self);
         auto itr2 = allWorkers.find(itr->workerName);
 
         allWorkers.modify(itr2, _self, [&]( auto& w ) {
@@ -184,7 +184,7 @@ void fidelity::putrecord(const account_name& account, const uint64_t& agreementI
             r.comment = comment;
         });
 
-        customers allCustomers(_self, itr->customerName);
+        customers allCustomers(_self, _self);
         auto itr2 = allCustomers.find(itr->customerName);
 
         allCustomers.modify(itr2, _self, [&]( auto& c ) {
