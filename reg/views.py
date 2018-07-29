@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Profile
-from fidelity.fidelity import Fidelity
+from fidelity.newfidelity import Fidelity
 
 manager = Fidelity()
 
