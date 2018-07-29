@@ -1,17 +1,49 @@
 
 {% extends 'template.html' %}
-
 {% block content %}
-<div class=" " style="position: absolute; height: calc(100vh - 80px) ; width: 100vw; display: flex; align-items: center; justify-content: center; color: white; text-align: center">
-    <div>
-        <div style="font-size: 52px; margin: 20px 0px 10px 0px">
-             Worker
-        </div>
-        <div style="font-size: 24px;  margin: 20px 0px 10px 0px">
-            Сайт для работников и работодателей. <br><a class="btn btn-primary" href="#" role="button">Подробнее...</a>
-</div>
+
+    <div class="container-fluid" >
+        <nav id="fid-navbar">
+            <div>
+                {% if not request.user.is_authenticated %}
+                    <a href="{% url 'register' %}" class="btn btn-primary optimize" role="button">Регистрация</a>
+                    <a href="{% url 'login' %}" class="btn btn-primary optimize" role="button">Вход</a>
+                {% else %}
+                    <a href="{% url 'profile' %}" class="btn btn-primary optimize" role="button"> {{ request.user.username }}</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primary optimize" role="button">Выход</a>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+    <style>
+        .landing {
+            position: absolute;
+            height: calc(100vh - 80px);
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center
+        }
+
+    h1{
+        font-size: 7em;
+            font-weight: 400;
+            color: #fff;
+            text-shadow: 3px 2px 0px rgba(0, 0, 0, 0.2);
+    }
+    </style>
+    <div class="landing" style="">
+        <div>
+            <div style="margin: 20px 0px 10px 0px">
+                <h1>Worker</h1>
+            </div>
+            <div style="font-size: 24px;  margin: 20px 0px 10px 0px">
+                Сайт для работников и работодателей.
+                <br><a class="btn btn-primary" href="{% url 'about' %}" role="button">Подробнее...</a>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}

@@ -9,9 +9,12 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('dashboard')
     if request.method == 'GET':
         return render(request, 'index.html')
 
 
-def dashboard(request):
-    pass
+
+def about(request):
+    return render(request, 'about.html')
